@@ -1,0 +1,30 @@
+spring:
+  sql:
+    init:
+      data-locations: classpath:data.sql
+      mode: always
+  cloud:
+    discovery:
+      enabled: true
+    netflix:
+      eureka:
+        client:
+          serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+
+  application:
+    name: api-operator
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+    dialect: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    defer-datasource-initialization: true
