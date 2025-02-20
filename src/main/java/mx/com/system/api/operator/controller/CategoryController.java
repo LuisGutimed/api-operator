@@ -2,8 +2,8 @@ package mx.com.system.api.operator.controller;
 
 import jakarta.annotation.Resource;
 import java.util.List;
-import mx.com.system.api.operator.dto.ItemDto;
-import mx.com.system.api.operator.service.IItemService;
+import mx.com.system.api.operator.dto.CategoryDto;
+import mx.com.system.api.operator.service.ICategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,42 +17,42 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RestController
-@RequestMapping("/api/item")
-public class ItemController {
+@RequestMapping("/api/category")
+public class CategoryController {
 
   @Resource
-  private IItemService itemService;
+  private ICategoryService categoryService;
 
   @GetMapping("/all")
-  public List<ItemDto> getAllItems() {
-    return itemService.findAll();
+  public List<CategoryDto> getAllCategorys() {
+    return categoryService.findAll();
   }
 
   @GetMapping("/{id}")
-  public ItemDto getItemById(@PathVariable String id) {
-    return itemService.findById(id);
+  public CategoryDto getCategoryById(@PathVariable String id) {
+    return categoryService.findById(id);
   }
 
   @PostMapping("/add")
-  public ItemDto createItem(@RequestBody ItemDto item) {
-    return itemService.save(item);
+  public CategoryDto createCategory(@RequestBody CategoryDto category) {
+    return categoryService.save(category);
   }
 
   @PutMapping("/{id}")
-  public ItemDto updateItem(@PathVariable String id, @RequestBody ItemDto item) {
-    item.setId(id);
-    return itemService.save(item);
+  public CategoryDto updateCategory(@PathVariable String id, @RequestBody CategoryDto category) {
+    category.setId(id);
+    return categoryService.save(category);
   }
 
   @DeleteMapping("/{id}")
-  public void deleteItem(@PathVariable String id) {
-    itemService.deleteItem(id);
+  public void deleteCategory(@PathVariable String id) {
+    categoryService.deleteCategory(id);
   }
 
   @GetMapping("/find")
-  public List<ItemDto> searchItem(@RequestParam String category,
+  public List<CategoryDto> searchCategory(@RequestParam String category,
       @RequestParam String description) {
-    return itemService.searchItem(category, description);
+    return categoryService.searchCategory(category, description);
   }
 
 }

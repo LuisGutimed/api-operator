@@ -13,4 +13,5 @@ public interface IItemService {
 
   void deleteItem(String id);
 
+  List<ItemDto> searchItem(String category, String description);
 }
