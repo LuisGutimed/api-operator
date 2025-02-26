@@ -6,12 +6,12 @@ spring:
       eureka:
         client:
           serviceUrl:
-            defaultZone: { HOST-EUREKA }
+            defaultZone: ${EUREKA}
   elasticsearch:
     rest:
-      username: { USERNAME }
-      password: { PASSWORD }
-      uris: { HOST-BONSAI-ELASTICSEARCH }
+      username: ${ELASTICUSER}
+      password: ${ELASTICPASS}
+      uris: ${ELASTICHOST}
   application:
     name: api-operator
   data:
