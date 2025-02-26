@@ -2,18 +2,28 @@ spring:
   cloud:
     discovery:
       enabled: true
-    netflix:
-      eureka:
-        client:
-          serviceUrl:
-            defaultZone: http://localhost:8761/eureka/
   elasticsearch:
-    uris: https://comunidad-unir-searc-7454920268.us-east-1.bonsaisearch.net:443
-    username: 5ua4zvm94
-    password: rceylu1zjw
+    rest:
+      username: ${ELASTICUSER}
+      password: ${ELASTICPASS}
+      uris: ${ELASTICHOST}
   application:
     name: api-operator
   data:
     elasticsearch:
       repositories:
         enabled: true
+
+api-operator:
+  rest:
+    base-path: /api/movie
+    add-movie: /add
+    edit-movie: /{id}
+    get-movie: /{id}
+    get-movies: /all
+    delete-movie: /{id}
+    search: /find
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA}

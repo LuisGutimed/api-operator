@@ -2,11 +2,6 @@ spring:
   cloud:
     discovery:
       enabled: true
-    netflix:
-      eureka:
-        client:
-          serviceUrl:
-            defaultZone: ${EUREKA}
   elasticsearch:
     rest:
       username: ${ELASTICUSER}
@@ -28,3 +23,7 @@ api-operator:
     get-movies: /all
     delete-movie: /{id}
     search: /find
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA}
