@@ -6,15 +6,25 @@ spring:
       eureka:
         client:
           serviceUrl:
-            defaultZone: ${EUREKA_HOST}
-
+            defaultZone: { HOST-EUREKA }
+  elasticsearch:
+    rest:
+      username: { USERNAME }
+      password: { PASSWORD }
+      uris: { HOST-BONSAI-ELASTICSEARCH }
   application:
     name: api-operator
   data:
     elasticsearch:
       repositories:
         enabled: true
-elasticsearch:
-  host: ${ELASTICSEARCH_HOST}
-  user: ${ELASTICSEARCH_USER}
-  pass: ${ELASTICSEARCH_PASS}
+
+api-operator:
+  rest:
+    base-path: /api/movie
+    add-movie: /add
+    edit-movie: /{id}
+    get-movie: /{id}
+    get-movies: /all
+    delete-movie: /{id}
+    search: /find

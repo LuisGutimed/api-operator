@@ -6,15 +6,14 @@ spring:
       eureka:
         client:
           serviceUrl:
-            defaultZone: ${EUREKA_HOST}
-
+            defaultZone: http://localhost:8761/eureka/
+  elasticsearch:
+    uris: https://comunidad-unir-searc-7454920268.us-east-1.bonsaisearch.net:443
+    username: 5ua4zvm94
+    password: rceylu1zjw
   application:
     name: api-operator
   data:
     elasticsearch:
       repositories:
         enabled: true
-elasticsearch:
-  host: ${ELASTICSEARCH_HOST}
-  user: ${ELASTICSEARCH_USER}
-  pass: ${ELASTICSEARCH_PASS}

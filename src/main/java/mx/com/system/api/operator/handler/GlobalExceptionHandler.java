@@ -34,7 +34,6 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(Exception.class)
   public ResponseEntity<ErrorDetail> handleGenericException(Exception ex) {
-    ex.printStackTrace();
     ErrorDetail errorDetail = new ErrorDetail(
         "Internal Server Error",
         ex.getMessage(),

@@ -1,9 +1,10 @@
 package mx.com.system.api.operator.controller;
 
-import jakarta.annotation.Resource;
 import java.util.List;
-import mx.com.system.api.operator.dto.ItemDto;
-import mx.com.system.api.operator.service.IItemService;
+import java.util.Set;
+import javax.annotation.Resource;
+import mx.com.system.api.operator.dto.MovieDto;
+import mx.com.system.api.operator.service.IMovieService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,42 +18,43 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RestController
-@RequestMapping("/api/item")
+@RequestMapping("${api-operator.rest.base-path}")
 public class ItemController {
 
   @Resource
-  private IItemService itemService;
+  private IMovieService itemService;
 
-  @GetMapping("/all")
-  public List<ItemDto> getAllItems() {
+  @GetMapping("${api-operator.rest.get-movies}")
+  public List<MovieDto> getAllItems() {
     return itemService.findAll();
   }
 
-  @GetMapping("/{id}")
-  public ItemDto getItemById(@PathVariable String id) {
+  @GetMapping("${api-operator.rest.get-movie}")
+  public MovieDto getItemById(@PathVariable String id) {
     return itemService.findById(id);
   }
 
-  @PostMapping("/add")
-  public ItemDto createItem(@RequestBody ItemDto item) {
+  @PostMapping("${api-operator.rest.add-movie}")
+  public MovieDto createItem(@RequestBody MovieDto item) {
     return itemService.save(item);
   }
 
-  @PutMapping("/{id}")
-  public ItemDto updateItem(@PathVariable String id, @RequestBody ItemDto item) {
+  @PutMapping("${api-operator.rest.edit-movie}")
+  public MovieDto updateItem(@PathVariable String id, @RequestBody MovieDto item) {
     item.setId(id);
     return itemService.save(item);
   }
 
-  @DeleteMapping("/{id}")
+  @DeleteMapping("${api-operator.rest.delete-movie}")
   public void deleteItem(@PathVariable String id) {
-    itemService.deleteItem(id);
+    itemService.deleteMovie(id);
   }
 
-  @GetMapping("/find")
-  public List<ItemDto> searchItem(@RequestParam String category,
-      @RequestParam String description) {
-    return itemService.searchItem(category, description);
+  @GetMapping("${api-operator.rest.search}")
+  public Set<MovieDto> searchMovie(@RequestParam(required = false) String title,
+      @RequestParam(required = false) String description,
+      @RequestParam(required = false) String genre) {
+    return itemService.searchMovie(title, description, genre);
   }
 
 }
